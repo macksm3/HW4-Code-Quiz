@@ -1,0 +1,15 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Comic-Sans-MS", "Trebuchet MS", sans-serif;
+  font-size: 16px;
+  text-align: center;
+}
+
+#staticStuff h4 {
+  font-size: 14px;
+}

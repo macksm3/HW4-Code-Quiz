@@ -6,37 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <!-- jQuery Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <!-- css files -->
     <!-- Bootstrap CDN -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- Local CSS -->
     <link rel="stylesheet" href="./assets/css/style.css">
+
     <!-- page title appears in browser tab -->
     <title>M3 Code Quiz</title>
   </head>
+
   <body>
-    <div id="staticStuff" class="container">
-      <div class="row">
+    <div class="container">
+      <div id="staticStuff" class="row">
         <h4 id="highScoreView" class="col-4">View High scores</h4>
         <div class="col-6"></div>
-        <h4 id="timeDisplay" class="col-2">Time: 100</h4>
+        <h4 id="timeDisplay" class="col-2">Time: <span id="showTime"></span></h4>
       </div>
-      <header id="quiz-header">
+      <header id="quizHeader">
         <h1 class="headLine">Coding Quiz Challenge</h1>
       </header>
-      <section id="outputGroup" class="row">
+      <section class="row">
         <div class="col-3"></div>
-        <div class="col-6">
+        <div id="outputGroup" class="col-6">
           <p id="question">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds!</p>
+          <button id="btnStart">Start Quiz</button>
           <!-- <hr> -->
         </div>
         <div class="col-3"></div>
       </section>
       <div id="inputGroup">
-        <button id="btnStart">Start Quiz</button>
         <ul class="answers">
           <!-- <li id="answer-1">Answer 1</li>
           <li id="answer-2">Answer 2</li>
@@ -44,9 +44,17 @@
           <li id="answer-4">Answer 4</li> -->
         </ul>
       </div>
+      <hr>
+      <!-- Here we create a generic div called "drink-options" -->
+      <div id="drink-options"></div>
 
     </div>
 
+    <!-- jQuery Library CDN here  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script> -->
     <!-- call javascript file -->
     <script src="./assets/js/script.js"></script>
 

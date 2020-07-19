@@ -7,6 +7,7 @@ $(function() {
   const inputBox = $("#inputGroup button");
   const answerBox = $(".answers");
   const thisObj = $(this);
+  // const answerButton = $(".btnAnswer");
   const answer1 = $("#answer-1");
   const answer2 = $("#answer-2");
   const answer3 = $("#answer-3");
@@ -23,7 +24,8 @@ $(function() {
   ];
   
   // const answer1 = document.getElementById("answer-1");
-
+  let questionNumber = 0;
+  let questionsLoaded = false;
 
   // timer 
   let gameTime = 100;
@@ -52,74 +54,75 @@ $(function() {
     
   }
 
+  function loadQuestion() {
+    console.log("Question number = " + questionNumber + 1);
+    // $(".btnAnswer").off("click", function() {})
+    // Load the first question to the page 
+    $("#question").text(questionList[questionNumber].question);
+    // Load the answer options 
+    $(answer1).text(questionList[questionNumber].ans1);
+    $(answer2).text(questionList[questionNumber].ans2);
+    $(answer3).text(questionList[questionNumber].ans3);
+    $(answer4).text(questionList[questionNumber].ans4);
+    answerKey = questionList[questionNumber].key;
+    console.log("answer " + (questionNumber + 1) + " should be: " + answerKey);
+    questionsLoaded = true;
+    // processAnswer(questionNumber)
+    
+  }
+
   // // Evaluate answer
   // function evalAnswer(index) {
   // }
-
-
-  function processAnswer(index) {  
+  // function processAnswer() {    }
     // evalAnswer(index);
-    console.log("evaluating answer to question " + (index + 1));
 
-    $(".btnAnswer").on("click", function() {
-      event.preventDefault();
-      const answerChosen = $(this).text();
-      console.log("answer " + (index + 1) + " selected: " + answerChosen);
-      if (answerChosen === answerKey) {
-        console.log("correct answer");
-        $(result).html("<p>Correct!</p>");
-      }else{
-        console.log("Wrong answer");
-        $(result).html("<p>Wrong!</p>");
-        gameTime = gameTime - 10;
-      }
+  $(".btnAnswer").on("click", function() {
+    // event.preventDefault();
+    console.log("evaluating answer to question " + (questionNumber + 1));
+    // if (questionsLoaded) {
+    //   questionsLoaded = false;
+    //   const answerChosen = $(this).text();
+    //   console.log("answer " + (questionNumber + 1) + " selected: " + answerChosen);
+    //   if (answerChosen === answerKey) {
+    //     console.log("correct answer");
+    //     $(result).html("<p>Correct!</p>");
+    //   }else{
+    //     console.log("Wrong answer");
+    //     $(result).html("<p>Wrong!</p>");
+    //     gameTime = gameTime - 10;
+    //   }
 
-      // x = setTimeout(function() {}, 1);
-      // increment the index and load the next question
-      index++;
-      if (index === questionList.length) {
-        gameOver();
-      }
-      else{
-        loadQuestion(index);
-      }
+    //   // x = setTimeout(function() {}, 1);
+    //   // increment the index and load the next question
+    //   questionNumber++;
+    //   if (questionNumber < questionList.length) {
+    //     loadQuestion(questionNumber);
+    //   }
+    //   else{
+    //      gameOver();
+    //   }
 
+    // }
     // $(".btnAnswer").off(focus);
 
     // index++;
     // console.log(index);
     
-    });
-  }
-
-  function loadQuestion(index) {
-    console.log("current index = " + index);
-    // $(".btnAnswer").off("click", function() {})
-    // Load the first question to the page 
-    $("#question").text(questionList[index].question);
-    // Load the answer options 
-    $(answer1).text(questionList[index].ans1);
-    $(answer2).text(questionList[index].ans2);
-    $(answer3).text(questionList[index].ans3);
-    $(answer4).text(questionList[index].ans4);
-    answerKey = questionList[index].key;
-    console.log("answer " + (index + 1) + " should be " + answerKey);
-    processAnswer(index)
-    
-  }
+  });
 
   // click start quiz button 
   $("#btnStart").on("click", function() {
     gameClock();
     gameOn = true;
-    console.log("testing");
+    console.log("Start button clicked");
     $("#quizHeader").empty();
     $("#btnStart").remove();
     outputBox.addClass("quizMode");
     inputBox.removeClass("hidden");
     // add style with border
     inputBox.addClass("btnAnswer");
-    loadQuestion(0);
+    loadQuestion();
 
     // // start countdown timer 
     // let x = setInterval(function() {
@@ -137,12 +140,12 @@ $(function() {
   // end of btnStart click event  
   });
 
-    // Generate a stop button in the #testBed
-    // $("#testBed").html(<button id="btnStop">Stop Timer</button>);
-    $("#btnStop").on("click", function() {
-      // console.log("stop button");
-      clearInterval(gameInterval); 
-    });
+  // Generate a stop button in the #testBed
+  // $("#testBed").html(<button id="btnStop">Stop Timer</button>);
+  $("#btnStop").on("click", function() {
+    console.log("stop timer clicked");
+    clearInterval(gameInterval); 
+  });
 
 
 

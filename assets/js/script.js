@@ -23,7 +23,6 @@ $(function() {
     {question: "A very useful tool used during development and debugging for printing content to the debugger is:", ans1: "1. JavaScript", ans2: "2. terminal / bash", ans3: "3. for loops", ans4: "4. console.log", key: "4. console.log"}
   ];
   
-  // const answer1 = document.getElementById("answer-1");
   let questionNumber = 0;
   let questionsLoaded = false;
 
@@ -32,6 +31,8 @@ $(function() {
   let gameInterval;
   const timeView = $("#showTime")
   timeView.text(gameTime);
+
+
   // Game Over! function, here is stuff that happens when time expires
   function gameOver() {
     outputBox.empty().html("<h1>All done!</h1><p>Your final score is " + gameTime + ".</p><hr>");
@@ -67,43 +68,42 @@ $(function() {
     answerKey = questionList[questionNumber].key;
     console.log("answer " + (questionNumber + 1) + " should be: " + answerKey);
     questionsLoaded = true;
-    // processAnswer(questionNumber)
-    
+    // processAnswer(questionNumber)  
   }
 
   // // Evaluate answer
-  // function evalAnswer(index) {
-  // }
-  // function processAnswer() {    }
-    // evalAnswer(index);
+  // function evalAnswer(index) {}
+  // function processAnswer() {}
 
-  $(".btnAnswer").on("click", function() {
+  // $(".btnAnswer").on("click", function() {console.log("click answer")});
+
+  $(inputBox).on("click", function() {
     // event.preventDefault();
-    console.log("evaluating answer to question " + (questionNumber + 1));
-    // if (questionsLoaded) {
-    //   questionsLoaded = false;
-    //   const answerChosen = $(this).text();
-    //   console.log("answer " + (questionNumber + 1) + " selected: " + answerChosen);
-    //   if (answerChosen === answerKey) {
-    //     console.log("correct answer");
-    //     $(result).html("<p>Correct!</p>");
-    //   }else{
-    //     console.log("Wrong answer");
-    //     $(result).html("<p>Wrong!</p>");
-    //     gameTime = gameTime - 10;
-    //   }
+    console.log("evaluating answer to question " + questionNumber + 1);
+    if (questionsLoaded) {
+      questionsLoaded = false;
+      const answerChosen = $(this).text();
+      console.log("answer " + (questionNumber + 1) + " selected: " + answerChosen);
+      if (answerChosen === answerKey) {
+        console.log("correct answer");
+        $(result).html("<p>Correct!</p>");
+      }else{
+        console.log("Wrong answer");
+        $(result).html("<p>Wrong!</p>");
+        gameTime = gameTime - 10;
+      }
 
-    //   // x = setTimeout(function() {}, 1);
-    //   // increment the index and load the next question
-    //   questionNumber++;
-    //   if (questionNumber < questionList.length) {
-    //     loadQuestion(questionNumber);
-    //   }
-    //   else{
-    //      gameOver();
-    //   }
+      // x = setTimeout(function() {}, 1);
+      // increment the index and load the next question
+      questionNumber++;
+      if (questionNumber < questionList.length) {
+        loadQuestion(questionNumber);
+      }
+      else{
+         gameOver();
+      }
 
-    // }
+    }
     // $(".btnAnswer").off(focus);
 
     // index++;
@@ -123,19 +123,6 @@ $(function() {
     // add style with border
     inputBox.addClass("btnAnswer");
     loadQuestion();
-
-    // // start countdown timer 
-    // let x = setInterval(function() {
-    //   gameTime --;
-    //   if (gameTime < 1) {
-    //     clearInterval(x); 
-    //     console.log("game over");
-    //     gameOver();
-    //   }
-    //   timeView.text(gameTime);
-    // }, 1000);
-    // // end countdown timer  
-  
 
   // end of btnStart click event  
   });

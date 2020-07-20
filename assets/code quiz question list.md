@@ -14,7 +14,7 @@ from the demo.gif file provided
   1. quotes
   2. curly brackets
   3. parenthesis
-  4. squar brackets
+  4. square brackets
 }
 
 // layer 64
